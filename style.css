@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto Mono";
+  color: white;
+  background-color: black;
+}
+
+/* link */
+a {
+  color: deepskyblue;
+}
+
+
+/* Table */
+table {
+  background-color: #000000;
+  padding: 0.5rem;
+  border-collapse: collapse;
+  /* width: 20%; */
+  margin: 0 auto;
+}
+
+th, td, caption {
+  padding: 0.4rem;
+  border: 1px solid gray;
+  font-size: 14px;
+}
+
+caption, th {
+  text-align: center;
+}
+
+td {
+  text-align: right;
+}

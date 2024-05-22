@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Launch View</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <a href="https://flightclub.io/path-tracker">Flight Club</a>
+  <br>
+
+  <!-- upload file btn -->
+  <input type="file" id="input" />
+
+
+  <div>
+    <!-- Table displaying alt-az data -->
+    <table>
+      <tr>
+        <th>Stage (#)</th>
+        <th>Latitude (˚)	</th>
+        <th>Longitude (˚)</th>
+        <th>Altitude (km)</th>
+        <th>Azimuth (˚)</th>
+        <th>Elevation (˚)</th>
+        <th>Range (km)</th>
+      </tr>
+      
+      <tr id="stage1">
+        <td>1</td>
+        <td>00.00</td>
+        <td>000.00</td>
+        <td>0.00</td>
+        <td>000.00</td>
+        <td>0.00</td>
+        <td>000.00</td>
+      </tr>
+      
+      <tr id="stage2">
+        <td>2</td>
+        <td>00.00</td>
+        <td>000.00</td>
+        <td>0.00</td>
+        <td>000.00</td>
+        <td>0.00</td>
+        <td>000.00</td>
+      </tr>
+      
+    </table>
+
+    <!-- Slider to control table -->
+    <div class="slider-container">
+      <input type="range" min="0" max="1000" value="0" class="slider" id="launchTime">
+    </div>
+
+    <!-- alt-az graph -->
+    <div>
+      <canvas id="azCanvas" width="400" height="400"></canvas>
+      <canvas id="eleCanvas" width="200" height="400"></canvas>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
