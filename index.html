@@ -9,19 +9,22 @@
 </head>
 
 <body>
-  <a href="https://flightclub.io/path-tracker">Flight Club</a>
-  <br>
+  <div class="content">
+    <a href="https://flightclub.io/path-tracker" target="_blank">Flight Club</a>
+    <br>
+  
+    <!-- upload file btn -->
+    <input type="file" id="input" />
+  
+    <button onclick="toggleDarkMode()" id="toggleDarkMode">Toggle dark mode</button>
+  </div>
 
-  <!-- upload file btn -->
-  <input type="file" id="input" />
-
-
-  <div>
+  <div class="content" id="content">
     <!-- Table displaying alt-az data -->
     <table>
       <tr>
         <th>Stage (#)</th>
-        <th>Latitude (˚)	</th>
+        <th>Latitude (˚)</th>
         <th>Longitude (˚)</th>
         <th>Altitude (km)</th>
         <th>Azimuth (˚)</th>
@@ -51,19 +54,124 @@
       
     </table>
 
+    <br>
+
+    <!-- launch datetime input -->
+    <label for="launchTimeInput">Launch Date & Time:</label>
+    <input type="datetime-local" step="1" id="launchTimeInput" oninput="setLaunchTime()">
+
+    <!-- viewing angle -->
+    <label for="viewingAngle">Viewing Angle:</label>
+    <input type="number" value="227" id="viewAngle" oninput="setViewAngle()">
+
+    <!-- events input table -->
+    <table class="inputTable">
+      <tr>
+        <th>Ignition</th>
+        <th>MECO-1</th>
+        <th>Stage 2 Ignition</th>
+        <th>Center Ignition</th>
+        <th>Side Ignition</th>
+        <th>Side Shutdown</th>
+        <th>Center Shutdown</th>
+        <th>Entry Ignition1</th>
+        <th>Entry Ignition2</th>
+        <th>Entry Shutdown1</th>
+        <th>Entry Shutdown2</th>
+        <th>Landing Ignition</th>
+        <th>SECO-1</th>
+        <th>Payload Separation</th>
+      </tr>
+      
+      <tr id="eventsInputs">
+        <td> <input type="number" min="-9999" max="9999" value="-1.5"  id="ignitionTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="137.0" id="mecoTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="147.0" id="stage2IgnitionTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="154.0" id="centerIgnitionTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="157.5" id="sideIgnitionTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="200.2" id="sideShutdownTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="201.7" id="centerShutdownTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="369.0" id="entryIgnition1Time" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="372.5" id="entryIgnition2Time" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="389.5" id="entryShutdown1Time" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="391.0" id="entryShutdown2Time" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="448.0" id="landingIgnitionTime" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="531.0" id="seco1Time" name="events" oninput="updatePrefix(id)">s</td>
+        <td> <input type="number" min="-9999" max="9999" value="3605.0"id="payloadSeparationTime" name="events" oninput="updatePrefix(id)">s</td>
+      </tr>   
+      
+      <tr id="eventsClocks">
+        <td class="eventTimers" id="ignitionTimeClock">T---.-</td>
+        <td class="eventTimers" id="mecoTimeClock">T---.-</td>
+        <td class="eventTimers" id="stage2IgnitionTimeClock">T----.-</td>
+        <td class="eventTimers" id="centerIgnitionTimeClock">T----.-</td>
+        <td class="eventTimers" id="sideIgnitionTimeClock">T----.-</td>
+        <td class="eventTimers" id="sideShutdownTimeClock">T----.-</td>
+        <td class="eventTimers" id="centerShutdownTimeClock">T----.-</td>
+        <td class="eventTimers" id="entryIgnition1TimeClock">T----.-</td>
+        <td class="eventTimers" id="entryIgnition2TimeClock">T----.-</td>
+        <td class="eventTimers" id="entryShutdown1TimeClock">T----.-</td>
+        <td class="eventTimers" id="entryShutdown2TimeClock">T----.-</td>
+        <td class="eventTimers" id="landingIgnitionTimeClock">T----.-</td>
+        <td class="eventTimers" id="seco1TimeClock">T----.-</td>
+        <td class="eventTimers" id="payloadSeparationTimeClock">T----.-</td>
+      </tr>      
+    </table>
+
+    <!-- countdown clock -->
+    <h1 id="launchCount">T-00:00:00</h1>
+
     <!-- Slider to control table -->
     <div class="slider-container">
       <input type="range" min="0" max="1000" value="0" class="slider" id="launchTime">
+      <h2 id="sliderTime">T+xx.x</h2>
     </div>
 
-    <!-- alt-az graph -->
-    <div>
-      <canvas id="azCanvas" width="400" height="400"></canvas>
-      <canvas id="eleCanvas" width="200" height="400"></canvas>
-    </div>
-
+    
+  
   </div>
+  <!-- alt-az graph -->
+  <div class="graphsContainer">
+    <!-- Alt Az graphs -->
+    <canvas id="azCanvas" width="400" height="400"></canvas>
+    <canvas id="eleCanvas" width="200" height="400"></canvas>
+
+    <!-- Engine Icons -->
+    <svg width="400" height="400">
+      <!-- <circle cx="100" cy="200" r="60" class="circle" fill="black" id="engineCircle"/> -->
+      <circle cx="100" cy="200" r="15" fill="green" class="mainEngines centerEngine"/>
+      <circle cx=" 58" cy="200" r="15" fill="green" class="mainEngines sideEngines"/>
+      <circle cx=" 70" cy="230" r="15" fill="green" class="mainEngines"/>
+      <circle cx="100" cy="242" r="15" fill="green" class="mainEngines"/>
+      <circle cx="130" cy="230" r="15" fill="green" class="mainEngines"/>
+      <circle cx="142" cy="200" r="15" fill="green" class="mainEngines sideEngines"/>
+      <circle cx="130" cy="170" r="15" fill="green" class="mainEngines"/>
+      <circle cx="100" cy="158" r="15" fill="green" class="mainEngines"/>
+      <circle cx=" 70" cy="170" r="15" fill="green" class="mainEngines"/>
+      
+      <circle cx="300" cy="200" r="55" fill="green" class="vacEngine"/>
+    </svg>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
+<script>
+  function updatePrefix(id) {
+    const input = document.getElementById(id);
+    const value = parseFloat(input.value);
+    const label = document.getElementById(id + "Label");
+    // alert(id + "Label");
+    
+    if(value >= 0) {
+      // label.textContent = "T+";
+      
+    }
+    if(value <  0) {
+      // label.textContent = "T";
+      
+    }
+    }
+</script>
 
 </html>

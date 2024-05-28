@@ -1,30 +1,70 @@
-html {
+:root {
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0:  #839496;
+  --base1:  #93a1a1;
+  --base2:  #eee8d5;
+  --base3:  #fdf6e3;
+  --yellow: #b58900;
+  --orange: #cb4b16;
+  --red:    #dc322f;
+  --magenta:#d33682;
+  --violet: #6c71c4;
+  --blue:   #268bd2;
+  --cyan:   #2aa198;
+  --green:  #859900;
+}
+
+.dark-mode {
+  --base3: #002b36;
+  --base2: #073642;
+  --base1: #586e75;
+  --base0: #657b83;
+  --base00:  #839496;
+  --base01:  #93a1a1;
+  --base02:  #eee8d5;
+  --base03:  #fdf6e3;
+}
+
+body {
   height: 100%;
   width: 100%;
   font-family: "Roboto Mono";
-  color: white;
-  background-color: black;
+  color: var(--base3);
+  background-color: var(--base02);
 }
 
 /* link */
 a {
   color: deepskyblue;
+  /* color: var(--blue); */
 }
 
+.content {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
 
 /* Table */
 table {
-  background-color: #000000;
+  background-color: var(--base03);
   padding: 0.5rem;
   border-collapse: collapse;
   /* width: 20%; */
   margin: 0 auto;
+  /* table-layout: fixed; */
+  font-weight: bold;
 }
 
 th, td, caption {
-  padding: 0.4rem;
-  border: 1px solid gray;
-  font-size: 14px;
+  padding: 0.1rem;
+  border: 1px solid var(--base0);
+  /* font-size: 14px; */
+  min-width: 60px;
 }
 
 caption, th {
@@ -33,4 +73,56 @@ caption, th {
 
 td {
   text-align: right;
+}
+
+.inputTable {
+  font-size: 12px;
+  /* font-weight: bold; */
+  /* width: 100px; */
+  /* display: flex; */
+}
+
+/* #eventsInputs { */
+  /* flex-grow: 1; */
+  /* width: 40px; */
+/* } */
+
+label {
+  margin-right: -5px;
+}
+
+input[name="events"] {
+  width: 3rem;
+  text-align: right;
+  /* padding-left: -5px; */
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* .eventTimers {
+  background-image: linear-gradient(to right, black 0%, black 50%, white 50%, white 100%);
+} */
+
+.slider-container {
+  /* width: 100%; */
+  display: flex;
+}
+
+#launchTime {
+  width: 100%;
+}
+
+.graphsContainer {
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
 }
