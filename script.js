@@ -75,7 +75,7 @@ document.getElementById('input').addEventListener('change', function(e) {
         csv = fileContent.split('\n');
 
         // save spreadsheet to global list
-        if( file.name.includes('Stage-1') || file.name.includes('_S1') ) {
+        if( file.name.includes('Stage-1') || file.name.includes('_S1') || file.name.includes('Stage 1') ) {
             dataStage1 = fileContent.split('\n');
             dataStage1.shift();
 
@@ -100,7 +100,7 @@ document.getElementById('input').addEventListener('change', function(e) {
             dataUploaded1 = true;
             updateTable();
         }
-        else if( file.name.includes('Stage-2') || file.name.includes('_S2') ) {
+        else if( file.name.includes('Stage-2') || file.name.includes('_S2') || file.name.includes('Stage 2') ) {
             dataStage2 = fileContent.split('\n');
             dataStage2.shift();
             
