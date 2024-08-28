@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Launch Events</title>
+  <link href="mobile.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="countdown">
+    <h1 id="count">T-</h1>
+    <h1 id="days">00</h1>
+    <h1>:</h1>
+    <h1 id="hours">00</h1>
+    <h1>:</h1>
+    <h1 id="minutes">00</h1>
+    <h1>:</h1>
+    <h1 id="seconds">00.000</h1>
+  </div>
+
+  <button onclick="call()">Call</button>
+  <button onclick="getNet()">Get NET</button>
+  <button onclick="test()">Test</button>
+  <input type="checkbox" id="devMode" checked>
+  <label for="modeCheck">dev</label>
+  <br>
+  <button class="eventBtn" id="viewBtn" onclick="timestamp(this)">
+    <h1>View</h1>
+    <h2>T+000.000s</h2>
+    <p></p>
+  </button>
+  <br>
+  <button class="eventBtn" id="mecoBtn" onclick="timestamp(this)">
+    <h1>MECO</h1>
+    <h2>T+000.000s</h2>
+    <p></p>
+  </button>
+  <br>
+  <button class="eventBtn" id="sonicBtn" onclick="timestamp(this)">
+    <h1>Sonic</h1>
+    <h2>T+000.000s</h2>
+    <p></p>
+  </button>
+  <script src="mobile.js"></script>
+</body>
+
+</html>
